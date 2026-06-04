@@ -170,6 +170,57 @@ QUERIES = {
         ORDER BY risk_score DESC, ticket_count DESC
         LIMIT 5;
     """,
+    "recommendation_kpis": f"""
+        WITH base AS (
+            SELECT
+                issue_category,
+                COUNT(*)::int AS ticket_count,
+                AVG(reopened::int) AS reopened_rate_raw,
+                AVG(resolution_time_hours) AS avg_resolution_time_hours,
+                AVG({PRIORITY_WEIGHT_SQL}) AS avg_priority_weight
+            FROM customer_support_tickets
+            GROUP BY issue_category
+        ),
+        overall AS (
+            SELECT
+                COUNT(*) AS total_tickets,
+                AVG(reopened::int) AS overall_reopened_rate_raw,
+                AVG(resolution_time_hours) AS overall_resolution_time_hours
+            FROM customer_support_tickets
+        ),
+        ranked AS (
+            SELECT
+                base.*,
+                RANK() OVER (ORDER BY avg_priority_weight DESC) AS priority_weight_rank,
+                COUNT(*) OVER () AS category_count
+            FROM base
+        )
+        SELECT
+            ranked.issue_category,
+            ranked.ticket_count,
+            ROUND((ranked.reopened_rate_raw * 100)::numeric, 2) AS reopened_rate,
+            ROUND((overall.overall_reopened_rate_raw * 100)::numeric, 2)
+                AS overall_reopened_rate,
+            ROUND(
+                ((ranked.reopened_rate_raw - overall.overall_reopened_rate_raw) * 100)::numeric,
+                2
+            ) AS reopened_rate_delta,
+            ROUND(ranked.avg_resolution_time_hours::numeric, 2) AS avg_resolution_time_hours,
+            ROUND(overall.overall_resolution_time_hours::numeric, 2)
+                AS overall_resolution_time_hours,
+            ROUND(
+                (ranked.avg_resolution_time_hours - overall.overall_resolution_time_hours)::numeric,
+                2
+            ) AS resolution_time_delta,
+            ROUND(((ranked.ticket_count::numeric / overall.total_tickets) * 100), 2)
+                AS category_share,
+            ROUND(ranked.avg_priority_weight::numeric, 2) AS avg_priority_weight,
+            ranked.priority_weight_rank::int,
+            ranked.category_count::int
+        FROM ranked
+        CROSS JOIN overall
+        ORDER BY ranked.issue_category;
+    """,
 }
 
 
