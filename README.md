@@ -117,7 +117,7 @@ EDA는 데이터를 다각도로 관찰하며 주요 특성과 패턴을 파악�
 
 ### EDA 1. Issue Category 기준 재오픈율 분석
 
-<img src="docs/eda-category.png" width="820" alt="Issue Category 기준 재오픈율 분석 화면">
+<img src="docs/eda-category.png" width="640" alt="Issue Category 기준 재오픈율 분석 화면">
 
 문의 유형별 재오픈율을 확인한 결과, **Other 카테고리의 재오픈율이 52.44%로 가장 높게 나타났습니다.**
 
@@ -125,7 +125,7 @@ Other가 높다는 것은 단순히 특정 문의 유형이 위험하다는 의�
 
 ### EDA 2. Channel 기준 재오픈율 분석
 
-<img src="docs/eda-channel.png" width="820" alt="Channel 기준 재오픈율 분석 화면">
+<img src="docs/eda-channel.png" width="640" alt="Channel 기준 재오픈율 분석 화면">
 
 채널별 재오픈율을 확인한 결과, **Phone 채널의 재오픈율이 50.27%로 가장 높게 나타났습니다.**
 
@@ -133,7 +133,7 @@ Phone 채널은 실시간 상담 특성상 상담 내용 기록, 후속 조치, 
 
 ### EDA 3. 처리시간 기준 분석
 
-<img src="docs/eda-resolution-time.png" width="820" alt="처리시간 기준 분석 화면">
+<img src="docs/eda-resolution-time.png" width="640" alt="처리시간 기준 분석 화면">
 
 문의 유형별 평균 처리시간을 확인한 결과, **Account 카테고리의 평균 처리시간이 가장 길게 나타났습니다.**
 
