@@ -15,8 +15,8 @@ Kaggle Customer Support Tickets Dataset의
 확인해보니 재오픈율, 처리시간, 우선순위는
 서로 다른 위험 신호를 보여주고 있었습니다.
 
-그래서 재오픈율, 처리시간, 우선순위를
-통합 평가하는 <strong>Risk Score</strong>를 설계했습니다.
+그래서 이를 통합 평가하는
+<strong>Risk Score</strong>를 설계했습니다.
 
 | 항목 | 내용 |
 | --- | --- |
@@ -27,9 +27,6 @@ Kaggle Customer Support Tickets Dataset의
 | 결과물 | Streamlit Operational Insight Dashboard |
 
 ## 왜 이 프로젝트를 시작했는가?
-
-문의량이 많은 영역이
-가장 위험한 영역인지 먼저 확인했습니다.
 
 하지만 데이터를 분석해보니
 문의량만으로는 운영 리스크를 설명하기 어려웠습니다.
@@ -66,8 +63,6 @@ Kaggle Customer Support Tickets Dataset의
 
 ### EDA 1
 
-Issue Category 기준 재오픈율을 확인했습니다.
-
 Other 카테고리의 재오픈율이
 <strong>52.44%</strong>로 가장 높았습니다.
 
@@ -75,16 +70,12 @@ Other 카테고리의 재오픈율이
 
 ### EDA 2
 
-Channel 기준 재오픈율을 확인했습니다.
-
 Phone 채널의 재오픈율이
 <strong>50.27%</strong>로 가장 높았습니다.
 
 ↓
 
 ### EDA 3
-
-처리시간 기준으로 다시 확인했습니다.
 
 재오픈율 기준으로는 Other가 높았지만,
 처리시간 기준으로는 Account가 <strong>37.66h</strong>로 가장 높았습니다.
@@ -213,8 +204,6 @@ Risk Score는 개별 KPI를 따로 보는 대신,
 운영 리소스를 어디에 먼저 투입할지 판단하기 위한 기준입니다.
 
 ## Dashboard
-
-대시보드는 KPI 조회를 넘어 운영 문제 판단과 개선 방향 도출까지 이어지도록 구성했습니다.
 
 ### 운영 리스크 현황
 
