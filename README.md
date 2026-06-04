@@ -15,7 +15,7 @@ Kaggle Customer Support Tickets Dataset의
 확인해보니 재오픈율, 처리시간, 우선순위는
 서로 다른 위험 신호를 보여주고 있었습니다.
 
-그래서 이를 통합 평가하는
+그래서 운영 리스크를 <b>정량화</b>하기 위해
 <strong>Risk Score</strong>를 설계했습니다.
 
 | 항목 | 내용 |
@@ -200,8 +200,8 @@ Risk Score =
 - Risk Score 1위: <strong>Other</strong>
 - Risk Score: <strong>0.8536</strong>
 
-Risk Score는 개별 KPI를 따로 보는 대신,
-운영 리소스를 어디에 먼저 투입할지 판단하기 위한 기준입니다.
+Risk Score는 운영 리스크를 정량화하고,
+개선 우선순위를 판단하기 위한 기준입니다.
 
 ## Dashboard
 
