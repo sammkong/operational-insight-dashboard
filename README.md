@@ -1,6 +1,8 @@
-# Operational Insight Dashboard
+# 고객 지원 티켓 데이터 기반 운영 리스크 분석 프로젝트
 
-> CS 운영 데이터를 분석해 운영 리스크를 정량화하고, Risk Score를 기반으로 개선 우선순위를 도출한 포트폴리오 프로젝트
+CS 운영 데이터를 분석하여 반복 문의, 처리 지연, 우선순위 부담을 정량화하고 운영 리스크를 평가하는 시스템입니다.
+
+재오픈율, 처리시간, 우선순위를 통합한 Risk Score를 설계하여 데이터 기반으로 개선 우선순위를 도출할 수 있도록 했습니다.
 
 ## 프로젝트 개요
 
@@ -48,50 +50,25 @@ CS 운영에서는 문의가 많이 들어오는 영역만 보는 것으로는 �
 
 분석은 아래 흐름으로 진행했습니다.
 
-```text
-STEP 1
-재오픈율을 운영 품질 KPI로 선정
+<details>
+<summary>분석 흐름 보기</summary>
 
-↓
+```mermaid
+flowchart TD
+    A[STEP 1<br/>재오픈율을 운영 품질 KPI로 선정]
+    B[EDA 1<br/>Issue Category 기준 재오픈율 분석<br/>Other 카테고리 재오픈율 최고]
+    C[EDA 2<br/>Channel 기준 재오픈율 분석<br/>Phone 채널 재오픈율 최고]
+    D[EDA 3<br/>처리시간 기준 분석<br/>Account 카테고리 처리시간 최고]
+    E[문제 발견<br/>재오픈율 기준 위험 영역과<br/>처리시간 기준 위험 영역이 다름]
+    F[단일 KPI 한계 발견]
+    G[Risk Score 설계<br/>Reopened Rate + Resolution Time + Priority Weight 통합 평가]
+    H[운영 개선 우선순위 도출]
+    I[Dashboard]
 
-EDA 1
-Issue Category 기준 재오픈율 분석
-결과: Other 카테고리 재오픈율 최고
-
-↓
-
-EDA 2
-Channel 기준 재오픈율 분석
-결과: Phone 채널 재오픈율 최고
-
-↓
-
-EDA 3
-처리시간 기준 분석
-결과: Account 카테고리 처리시간 최고
-
-↓
-
-문제 발견
-재오픈율 기준 위험 영역과 처리시간 기준 위험 영역이 다름
-
-↓
-
-단일 KPI 한계 발견
-
-↓
-
-Risk Score 설계
-Reopened Rate + Resolution Time + Priority Weight 통합 평가
-
-↓
-
-운영 개선 우선순위 도출
-
-↓
-
-Dashboard
+    A --> B --> C --> D --> E --> F --> G --> H --> I
 ```
+
+</details>
 
 분석은 SQL과 Pandas를 중심으로 진행했고, 계산된 KPI와 Risk Score를 Streamlit 대시보드로 시각화했습니다.
 
@@ -177,19 +154,19 @@ Risk Score를 통해 단순히 “어떤 지표가 높은가”가 아니라, **
 
 ### 운영 리스크 현황
 
-<img src="docs/ai-insight-risk-summary.png" width="820" alt="운영 리스크 현황 화면">
+<img src="docs/ai-insight-risk-summary.png" width="640" alt="운영 리스크 현황 화면">
 
 Risk Score가 높은 카테고리를 중심으로 카테고리, 리스크 점수, 재오픈율, 평균 처리시간, 우선순위 가중치를 한 화면에서 확인할 수 있도록 구성했습니다.
 
 ### 개선 권고안
 
-<img src="docs/ai-insight-improvement.png" width="820" alt="개선 권고안 화면">
+<img src="docs/ai-insight-improvement.png" width="640" alt="개선 권고안 화면">
 
 추천 근거와 KPI 차이를 함께 보여주고, 해당 영역에 대해 어떤 운영 개선을 먼저 검토해야 하는지 제안합니다.
 
 ### 운영 리소스 제안
 
-<img src="docs/ai-insight-resource.png" width="820" alt="운영 리소스 제안 화면">
+<img src="docs/ai-insight-resource.png" width="640" alt="운영 리소스 제안 화면">
 
 리스크가 높은 영역에 숙련 상담 인력, QA 샘플링, 상담 가이드 정비 같은 운영 리소스를 어떻게 배치할지 판단할 수 있도록 구성했습니다.
 
